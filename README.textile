@@ -104,7 +104,7 @@ John Stephens is known as "johnstephens" on the Textpattern support forum and on
 
 h2(#help-section11). Changelog
 
-: Version 0.2.2
+; Version 0.2.2
 : 2016-12-05: Support the tag registry in Textpattern 4.6.0+.
 ; Version 0.2.1
 : 2012-04-26: Expand and revise plugin help.
