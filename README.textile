@@ -3,7 +3,7 @@ h1. pax_grep
 ; Summary
 : Replace all occurrences of a regular expression with replacements.
 ; Version
-: 0.2.1 (updated 26 Apr 2012)
+: 0.2.2 (updated 5 Dec 2016)
 
 h2. Table of contents
 
@@ -98,12 +98,14 @@ This plugin is licenced under "GPL, Version 2":http://textpattern.com/about/51/l
 
 h2(#help-section10). Author contact
 
-John Stephens is known as "johnstephens" on the Textpattern support forum and on Twitter. You can reach me at "Design Opus":http://designop.us/ or find "@johnstephens":twitter on Twitter "here":twitter.
+John Stephens is known as "johnstephens" on the Textpattern support forum and on Twitter. You can reach me at "Design Opus":https://designop.us/ or find "@johnstephens":twitter on Twitter "here":twitter.
 
-[twitter]http://twitter.com/johnstephens
+[twitter]https://twitter.com/johnstephens
 
 h2(#help-section11). Changelog
 
+: Version 0.2.2
+: 2016-12-05: Support the tag registry in Textpattern 4.6.0+.
 ; Version 0.2.1
 : 2012-04-26: Expand and revise plugin help.
 ; Version 0.2
