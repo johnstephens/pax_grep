@@ -3,7 +3,7 @@ h1. pax_grep
 ; Summary
 : Replace all occurrences of a regular expression with replacements.
 ; Version
-: 0.2.2 (updated 5 Dec 2016)
+: 0.2.3 (updated 14 June 2018)
 
 h2. Table of contents
 
@@ -21,7 +21,7 @@ h2. Table of contents
 
 h2(#help-section01). Overview
 
-This plugin allows you to _find occurrences of a "regular expression":http://en.wikipedia.org/wiki/Regular_expression pattern_ and _replace them with something else_. It's almost identical to it's awesome parent plugin "rah_replace by Jukka Svahn":http://rahforum.biz/plugins/rah_replace, but *pax_grep* uses PHP's "preg_replace()":http://fi.php.net/preg_replace function, packaged in a compact and easy-to-use Textpattern tag.
+This plugin allows you to _find occurrences of a "regular expression":http://en.wikipedia.org/wiki/Regular_expression pattern_ and _replace them with something else_. It's almost identical to it's awesome parent plugin "rah_replace by Jukka Svahn":http://rahforum.biz/plugins/rah_replace, but *pax_grep* uses PHP's "@preg_replace()@":http://fi.php.net/preg_replace function, packaged in a compact and easy-to-use Textpattern tag.
 
 h2(#help-section02). Installing and uninstalling
 
@@ -94,16 +94,18 @@ bc.. <txp:pax_grep from="/<\/?p>/,/\t/" to="">
 
 h2(#help-section09). Licence
 
-This plugin is licenced under "GPL, Version 2":http://textpattern.com/about/51/license.
+This plugin is licenced under "GPL, Version 2":https://textpattern.com/license.
 
 h2(#help-section10). Author contact
 
-John Stephens is known as "johnstephens" on the Textpattern support forum and on Twitter. You can reach me at "Design Opus":https://designop.us/ or find "@johnstephens":twitter on Twitter "here":twitter.
+John Stephens is known as "johnstephens" on the Textpattern support forum and on Twitter. You can reach me at "Cycle Design Co.":https://cyclexo.com/ or find "@johnstephens":twitter on Twitter "here":twitter.
 
 [twitter]https://twitter.com/johnstephens
 
 h2(#help-section11). Changelog
 
+; Version 0.2.3
+: 2018-06-14: Clean up code style and fix plugin help navigation.
 ; Version 0.2.2
 : 2016-12-05: Support the tag registry in Textpattern 4.6.0+.
 ; Version 0.2.1

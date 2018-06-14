@@ -17,9 +17,9 @@ $plugin['name'] = 'pax_grep';
 // 1 = Plugin help is in raw HTML.  Not recommended.
 # $plugin['allow_html_help'] = 1;
 
-$plugin['version'] = '0.2.2';
+$plugin['version'] = '0.2.3';
 $plugin['author'] = 'John Stephens';
-$plugin['author_uri'] = 'https://designop.us/';
+$plugin['author_uri'] = 'https://cyclexo.com/';
 $plugin['description'] = 'Replace all occurrences of a regular expression with replacements.';
 
 // Plugin load order:
@@ -73,31 +73,41 @@ if (!defined('txpinterface'))
 # --- BEGIN PLUGIN CODE ---
 /**
  * This is pax_grep: A plugin for Textpattern
- * version 0.2.1
+ * version 0.2.3
  * by John Stephens, adapted from rah_replace by Jukka Svahn
- * https://designop.us/
+ * https://cyclexo.com/
  */
 
+// TXP 4.6 tag registration
 if (class_exists('\Textpattern\Tag\Registry')) {
     Txp::get('\Textpattern\Tag\Registry')
-       ->register('pax_grep');
+        ->register('pax_grep');
 }
 
-function pax_grep($atts,$thing) {
+// pax_grep :: String -> String
+function pax_grep ($atts, $thing = null) {
+
     global $pretext;
-    extract(lAtts(array(
+
+    extract (lAtts (array (
         'from' => '',
         'to' => '',
         'delimiter' => ','
-    ),$atts));
-    $from = explode($delimiter,$from);
-    $to = explode($delimiter,$to);
-    $count = count($to);
-    if($count == 1) $to = implode('',$to);
-    if($count == 0) $to = '';
-    return preg_replace($from,$to,parse($thing));
-}
+    ), $atts));
 
+    $from = explode ($delimiter, $from);
+
+    $to = explode ($delimiter, $to);
+
+    $count = count ($to);
+
+    if ($count == 1) $to = implode ('', $to);
+
+    if ($count == 0) $to = '';
+
+    return preg_replace ($from, $to, parse($thing));
+
+}
 # --- END PLUGIN CODE ---
 if (0) {
 ?>
@@ -109,7 +119,7 @@ if (0) {
 		<dt>Summary</dt>
 		<dd>Replace all occurrences of a regular expression with replacements.</dd>
 		<dt>Version</dt>
-		<dd>0.2.2 (updated 5 Dec 2016)</dd>
+		<dd>0.2.3 (updated 14 Jun 2018)</dd>
 	</dl>
 
 	<h2>Table of contents</h2>
@@ -130,33 +140,33 @@ if (0) {
 		<li><a href="#help-section11" rel="nofollow">Changelog</a></li>
 	</ol>
 
-	<h2>Overview</h2>
+	<h2 id="help-section01">Overview</h2>
 
 	<p>This plugin allows you to <em>find occurrences of a <a href="http://en.wikipedia.org/wiki/Regular_expression" rel="nofollow">regular expression</a> pattern</em> and <em>replace them with something else</em>. It&#8217;s almost identical to it&#8217;s awesome parent plugin <a href="http://rahforum.biz/plugins/rah_replace" rel="nofollow">rah_replace by Jukka Svahn</a>, but <strong>pax_grep</strong> uses <span class="caps">PHP</span>&#8217;s <a href="http://fi.php.net/preg_replace" rel="nofollow">preg_replace()</a> function, packaged in a compact and easy-to-use Textpattern tag.</p>
 
-	<h2>Installing and uninstalling</h2>
+	<h2 id="help-section02">Installing and uninstalling</h2>
 
 	<p>In Textpattern, navigate to the &#8220;Plugins&#8221; tab under &#8220;Admin&#8221;, and paste the code into the &#8220;Install plugin&#8221; pane. Install and enable the plugin.</p>
 
 	<p>To uninstall, simply delete the plugin from the &#8220;Plugins&#8221; tab.</p>
 
-	<h2>Usage and syntax</h2>
+	<h2 id="help-section03">Usage and syntax</h2>
 
 	<p><strong>pax_grep</strong> takes a regular expression and searches content for matching patterns. Then it replaces matches with the string(s) you supply. This works just like <a href="http://rahforum.biz/plugins/rah_replace" rel="nofollow">rah_replace</a>, except it supports regular expression searches. If you don&#8217;t need to search and replace based on a regular expression, <strong>you should use rah_replace instead</strong>.</p>
 
 	<p><strong>pax_grep</strong> s a container tag with three attributes.</p>
 
 <pre><code>&lt;txp:pax_grep ↩
-    from=&quot;/search pattern/&quot; ↩
-    to=&quot;replacement text&quot; ↩
-    delimiter=&quot;|&quot;&gt;
-    Content
+	from=&quot;/search pattern/&quot; ↩
+	to=&quot;replacement text&quot; ↩
+	delimiter=&quot;|&quot;&gt;
+	Content
 &lt;/txp:pax_grep&gt;
 </code></pre>
 
-	<h3>Attributes</h3>
+	<h3 id="help-section04">Attributes</h3>
 
-	<h4><code>from</code> &#8212; <em>Required</em></h4>
+	<h4 id="help-section05"><code>from</code> &#8212; <em>Required</em></h4>
 
 	<p>Give this attribute the value of a pattern or patterns you wish to search for. A pattern should be <strong>delimited with single quotes</strong> or some other character not used in the pattern. Separate multiple patterns by commas (use the <code>delimiter</code> attribute to specify and alternate separator).</p>
 
@@ -167,7 +177,7 @@ if (0) {
 		<dd><code>from=&quot;'^foo','bar$'&quot;</code></dd>
 	</dl>
 
-	<h4><code>to</code> &#8212; <em>Required</em></h4>
+	<h4 id="help-section06"><code>to</code> &#8212; <em>Required</em></h4>
 
 	<p>This attribute holds the replacement value(s) for each pattern in the <code>from</code> attribute. No delimiters are needed, but <strong>multiple values must be separated by commas (use the <code>delimiter</code> attribute to specify and alternate separator)</strong>. Each <code>from</code> value will be replaced with the corresponding <code>to</code> value.</p>
 
@@ -178,7 +188,7 @@ if (0) {
 		<dd><code>to=&quot;fox,bat&quot;</code></dd>
 	</dl>
 
-	<h4><code>delimiter</code> &#8212; <em>Optional</em></h4>
+	<h4 id="help-section07"><code>delimiter</code> &#8212; <em>Optional</em></h4>
 
 	<p>So you don&#8217;t like using commas to separate your search patterns or replacement values? Sometimes, you need to use a comma in the search pattern, and you need a different separator to break search patterns and replacement values. Use this attribute to specify an alternate separator.</p>
 
@@ -189,16 +199,16 @@ if (0) {
 		<dd><code>delimiter=&quot; | &quot;</code></dd>
 	</dl>
 
-	<h2>Examples</h2>
+	<h2 id="help-section08">Examples</h2>
 
 	<h3>Example 1: Get words out of Textpattern&#8217;s <code>request_uri</code>.</h3>
 
 	<p>This example outputs the current request <acronym title="Uniform Resource Identifier"><span class="caps">URI</span></acronym>, and uses a regular expression to drop the leading slash and transform many delimiter characters into spaces. You might use code like this on a 404 error page to populate a search field with information from a mistyped <span class="caps">URL</span>.</p>
 
 <pre><code>&lt;txp:pax_grep
-    from=&quot;'^\/','\/','%20','\-','\+','\?=','\_'&quot; ↩
-    to=&quot;, , , , , , &quot;&gt;
-    &lt;txp:page_url type=&quot;request_uri&quot;/&gt;
+	from=&quot;'^\/','\/','%20','\-','\+','\?=','\_'&quot; ↩
+	to=&quot;, , , , , , &quot;&gt;
+	&lt;txp:page_url type=&quot;request_uri&quot;/&gt;
 &lt;/txp:pax_grep&gt;
 </code></pre>
 
@@ -207,23 +217,25 @@ if (0) {
 	<p>Sometimes you might want to show the excerpt of a Textpattern article without mucking around with a bunch of paragraph tags. Here&#8217;s how.</p>
 
 <pre><code>&lt;txp:pax_grep from=&quot;/&lt;\/?p&gt;/,/\t/&quot; to=&quot;&quot;&gt;
-    &lt;txp:excerpt/&gt;
+	&lt;txp:excerpt/&gt;
 &lt;/txp:pax_grep&gt;
 </code></pre>
 
-	<h2>Licence</h2>
+	<h2 id="help-section09">Licence</h2>
 
-	<p>This plugin is licenced under <a href="http://textpattern.com/about/51/license" rel="nofollow"><span class="caps">GPL</span>, Version 2</a>.</p>
+	<p>This plugin is licenced under <a href="https://textpattern.com/license" rel="nofollow"><span class="caps">GPL</span>, Version 2</a>.</p>
 
-	<h2>Author contact</h2>
+	<h2 id="help-section10">Author contact</h2>
 
-	<p>John Stephens is known as &#8220;johnstephens&#8221; on the Textpattern support forum and on Twitter. You can reach me at <a href="https://designop.us/" rel="nofollow">Design Opus</a> or find <a href="https://twitter.com/johnstephens" rel="nofollow">@johnstephens</a> on Twitter <a href="https://twitter.com/johnstephens" rel="nofollow">here</a>.</p>
+	<p>John Stephens is known as &#8220;johnstephens&#8221; on the Textpattern support forum and on Twitter. You can reach me at <a href="https://cyclexo.com/" rel="nofollow">Cycle Design Co.</a> or find <a href="https://twitter.com/johnstephens" rel="nofollow">@johnstephens</a> on Twitter <a href="https://twitter.com/johnstephens" rel="nofollow">here</a>.</p>
 
 
 
-	<h2>Changelog</h2>
+	<h2 id="#help-section11">Changelog</h2>
 
 	<dl>
+	<dt>Version 0.2.3</dt>
+		<dd>2018-06-14: Clean up code style and fix plugin help navigation.</dd>
 		<dt>Version 0.2.2</dt>
 		<dd>2016-12-05: Support the tag registry in Textpattern 4.6.0+.</dd>
 		<dt>Version 0.2.1</dt>
